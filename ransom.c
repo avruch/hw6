@@ -17,6 +17,21 @@ struct node {
     char word[SIZEOFSTRING+1];
     int count;
 };
+/**
+ * @brief free the memory that was saved for individual nodes.
+ * @param head is a pointer to the first node of the linked list.
+ */
+void list_kill(struct node *head) {
+	struct node *cursor;
+	struct node *cursor_copy;
+	cursor = head;
+	/* free every node in the linked listd */
+	while (cursor) {
+		cursor_copy = cursor;
+		cursor = cursor->next;
+		free(cursor_copy);
+	}
+}
 
 
 /**
@@ -74,21 +89,6 @@ int check_word(struct node *head , char *word) {
 }
 
 
-/**
- * @brief free the memory that was saved for individual nodes.
- * @param head is a pointer to the first node of the linked list.
- */
-void list_kill(struct node *head) {
-	struct node *cursor;
-	struct node *cursor_copy;
-	cursor = head;
-	/* free every node in the linked listd */
-	while (cursor) {
-		cursor_copy = cursor;
-		cursor = cursor->next;
-		free(cursor_copy);
-	}
-}
 
 
 /**
